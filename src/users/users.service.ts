@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcryptjs';
+// import * as bcrypt from 'bcryptjs';
+// import { log } from 'console';
 
 @Injectable()
 export class UsersService {
@@ -7,16 +8,17 @@ export class UsersService {
         {
             userId: 1,
             username: 'Fabian',
-            password: bcrypt.hash('1234', 10),
+            password: '1234',
         },
         {
             userId: 2,
             username: 'Ruben',
-            password: bcrypt.hash('12345', 10),
+            password: '12345',
         },
     ];
     
-    async findOne(username: string): Promise<any | undefined> {
+    async findOne(username: string): Promise<any> {
+        console.log(username);
         return this.users.find(user => user.username === username);
     }
 }
