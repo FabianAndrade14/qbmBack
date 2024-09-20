@@ -4,9 +4,13 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ProfileModule } from './profile/profile.module';
+import { Mongoose } from 'mongoose';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [AuthModule, UsersModule, ProfileModule],
+  imports: [AuthModule, UsersModule, ProfileModule,
+    MongooseModule.forRoot('mongodb+srv://fandrade:fandrade@cluster0.nnykq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
