@@ -8,18 +8,20 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @UseGuards(LocalAuthGuard)
+  // @UseGuards(LocalAuthGuard)
   @Post('login')
   @ApiOperation({ summary: 'Autenticar al usuario' })
   @ApiResponse({ status: 200, description: 'Inicio de sesión exitoso.' })
+  @ApiResponse({ status: 400, description: 'Datos inválidos.' })
   @ApiResponse({ status: 401, description: 'Credenciales inválidas.' })
   login(@Body() loginDTO: LoginDTO) {
     const { email, password } = loginDTO;
 
-    if(email === 'user@example.com' && password === 'password123') {
+    if (email === 'ruben@gmail.com' && password === '1234') {
       return { message: 'Login exitoso', token: 'jwt_token' };
-    } 
-    return { message: 'Credenciales inválidas' }
+    }
+
+    return { message: 'Credenciales inválidas' };
   }
   // async login(@Request() req) {
   //   return this.authService.login(req.user);    
