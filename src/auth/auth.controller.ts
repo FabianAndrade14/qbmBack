@@ -1,8 +1,9 @@
 // src/auth/auth.controller.ts
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { LoginDTO } from './dto/login.dto';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -16,4 +17,10 @@ export class AuthController {
   async login(@Body() loginDto: LoginDTO) {
     return this.authService.login(loginDto); // Llama al método login en el servicio de autenticación
   }
+
+  @Post('logout')
+  async logout() {
+    return { message: 'Logout successful' };
+  }
+
 }

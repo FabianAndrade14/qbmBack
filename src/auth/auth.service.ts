@@ -7,6 +7,9 @@ import { User } from "src/users/schemas/user.schema";
 
 @Injectable()
 export class AuthService {
+
+  private revokedTokens: string[] = [];
+
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
@@ -52,4 +55,15 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),      
     };
   }
+
+  //Cerrar la sesión
+  async logout(token: string): Promise<void> {
+    this.revokedTokens.push(token);
+  }
+
+  isTokenRevoked(token: string): boolean {
+    return this.revokedTokens.includes(token);
+  }
+
+
 }

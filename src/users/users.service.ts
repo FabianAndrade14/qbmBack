@@ -30,7 +30,7 @@ export class UsersService {
 
   async findOneByEmail(email: string): Promise<User | null> {
     const user = await this.userModel.findOne({ email }).lean();
-    console.log('User found:', user);
+    console.log('Usuario Encontrado:', user);
     return user;
   }
 //   async findOneByEmail(email: string): Promise<User> {
